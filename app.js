@@ -30,6 +30,7 @@ app.use((err, req, res, next) => {
   res.json(err.message || "Internal Server Error");
 });
 
+// REVIEW: Routers should be above the error middleware functions. Fix it please.
 // Routers
 app.use(userRoutes);
 

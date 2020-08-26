@@ -12,6 +12,7 @@ const LocalStrategy = require("passport-local").Strategy;
 exports.localStrategy = new LocalStrategy(async (username, password, done) => {
   try {
     const user = await User.findOne({ where: { username: username } });
+    // REVIEW: passwordMatched not passwordMached.. fix please
     const passwordMached = user
       ? await bcrypt.compare(password, user.password)
       : false;

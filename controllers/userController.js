@@ -20,6 +20,7 @@ exports.signup = async (req, res, next) => {
       exp: Date.now() + JWT_EXPIRATION_MS,
     };
     const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
+    // REVIEW: why do you have 2 responses? Remove one of them
     res.status(201).json({ token });
     res.status(201).json(newUser);
   } catch (error) {
