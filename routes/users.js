@@ -3,7 +3,9 @@ const router = express.Router();
 const { signup, signin } = require("../controllers/userController");
 const passport = require("passport");
 const { createTrip } = require("../controllers/userController");
+// REVIEW: remove createTrips from your requires
 
+// REVIEW: Remove this middleware
 router.param("profileId", async (req, res, next, profileId) => {
   const profile = await fetchVendor(profileId, next);
   if (profile) {

@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET, JWT_EXPIRATION_MS } = require("../config/keys");
 
+// REVIEW: Remove `Trip` from requires
+
 exports.signup = async (req, res, next) => {
   const saltRounds = 10;
   try {

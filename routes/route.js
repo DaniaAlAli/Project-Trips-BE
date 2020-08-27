@@ -4,6 +4,7 @@ const passport = require("passport");
 const { updateTrip, deleteTrip } = require("../controllers/tripController");
 
 const router = express.Router();
+// REVIEW: Why is the file called `route.js`? You don't need this file, move the routes to `trips.js`
 
 // updateTrip
 

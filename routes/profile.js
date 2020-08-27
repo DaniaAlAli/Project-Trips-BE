@@ -16,6 +16,7 @@ router.param("profileId", async (req, res, next, profileId) => {
   }
 });
 
+// REVIEW: Bad naming. No capital letters in paths. I assume the controller is not ready, so I'm not gonna talk about that
 router.get("/My-profile");
 
 module.exports = router;
