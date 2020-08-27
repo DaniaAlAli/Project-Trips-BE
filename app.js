@@ -24,6 +24,7 @@ app.use(userRoutes);
 app.use(profileRoutes);
 app.use("/trips", tripRoutes);
 
+
 //Not Found Paths
 app.use((req, res, next) => {
   const error = new Error("Path Not Found");
