@@ -2,20 +2,15 @@ const { DataTypes, Model } = require("sequelize");
 
 const db = require("../db");
 
-class Trip extends Model {}
+class Profile extends Model {}
 
-Trip.init(
+Profile.init(
   {
-    destination: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    details: {
-      type: DataTypes.STRING,
-    },
     image: {
       type: DataTypes.STRING,
-
+    },
+    bio: {
+      type: DataTypes.STRING,
     },
   },
   {
@@ -23,4 +18,4 @@ Trip.init(
   }
 );
 
-module.exports = Trip;
+module.exports = Profile;
