@@ -6,6 +6,8 @@ const {
   tripList,
   fetchTrip,
   createTrip,
+  updateTrip,
+  deleteTrip,
 } = require("../controllers/tripController");
 const passport = require("passport");
 
@@ -25,5 +27,20 @@ router.get("/", tripList);
 
 // Create new trip
 router.post("/", passport.authenticate("jwt", { session: false }), createTrip);
+
+router.put(
+  "/:tripId",
+  passport.authenticate("jwt", { session: false }),
+  // upload.single("image"),
+  updateTrip
+);
+
+// deleteTrip
+
+router.delete(
+  "/:tripId",
+  passport.authenticate("jwt", { session: false }),
+  deleteTrip
+);
 
 module.exports = router;
