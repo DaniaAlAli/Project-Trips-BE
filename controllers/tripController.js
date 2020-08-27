@@ -1,4 +1,3 @@
-
 const { Trip } = require("../db/models");
 
 exports.updateTrip = async (req, res, next) => {
@@ -16,7 +15,10 @@ exports.updateTrip = async (req, res, next) => {
       err.status = 401;
       next(err);
     }
-
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.fetchTrip = async (tripId, next) => {
   try {
@@ -26,7 +28,6 @@ exports.fetchTrip = async (tripId, next) => {
     next(error);
   }
 };
-
 
 exports.deleteTrip = async (req, res, next) => {
   try {
@@ -38,6 +39,10 @@ exports.deleteTrip = async (req, res, next) => {
       err.status = 404;
       next(err);
     }
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.tripList = async (req, res, next) => {
   try {
@@ -57,7 +62,6 @@ exports.createTrip = async (req, res, next) => {
     req.body.userId = req.user.id;
     const newTrip = await Trip.create(req.body);
     res.status(201).json(newTrip);
-
   } catch (error) {
     next(error);
   }

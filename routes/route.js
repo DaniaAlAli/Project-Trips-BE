@@ -1,25 +1,25 @@
-const express = require("express");
-const passport = require("passport");
+// const express = require("express");
+// const passport = require("passport");
 
-const { updateTrip, deleteTrip } = require("../controllers/tripController");
+// const { updateTrip, deleteTrip } = require("../controllers/tripController");
 
-const router = express.Router();
+// const router = express.Router();
 
-// updateTrip
+// // updateTrip
 
-router.put(
-  "/:tripId",
-  passport.authenticate("jwt", { session: false }),
-  upload.single("image"),
-  updateTrip
-);
+// router.put(
+//   "/:tripId",
+//   passport.authenticate("jwt", { session: false }),
+//   upload.single("image"),
+//   updateTrip
+// );
 
-// deleteTrip
+// // deleteTrip
 
-router.delete(
-  "/:tripId",
-  passport.authenticate("jwt", { session: false }),
-  deleteTrip
-);
+// router.delete(
+//   "/:tripId",
+//   passport.authenticate("jwt", { session: false }),
+//   deleteTrip
+// );
 
-module.exports = router;
+// module.exports = router;
