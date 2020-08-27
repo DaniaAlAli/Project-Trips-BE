@@ -1,5 +1,22 @@
-// Models
+
 const { Trip } = require("../db/models");
+
+exports.updateTrip = async (req, res, next) => {
+  try {
+    if (req.user.id === req.trip.userId) {
+      if (req.file) {
+        req.body.image = `${req.protocol}://${req.get("host")}/media/${
+          req.file.filename
+        }`;
+      }
+      await req.trip.update(req.body);
+      res.status(204).end();
+    } else {
+      const err = new Error("Unauthorized");
+      err.status = 401;
+      next(err);
+    }
+
 
 exports.fetchTrip = async (tripId, next) => {
   try {
@@ -9,6 +26,18 @@ exports.fetchTrip = async (tripId, next) => {
     next(error);
   }
 };
+
+
+exports.deleteTrip = async (req, res, next) => {
+  try {
+    if (req.user.id === req.trip.userId) {
+      await req.trip.destroy();
+      res.status(204).end();
+    } else {
+      const err = new Error("Unauthorized");
+      err.status = 404;
+      next(err);
+    }
 
 exports.tripList = async (req, res, next) => {
   try {
@@ -28,6 +57,7 @@ exports.createTrip = async (req, res, next) => {
     req.body.userId = req.user.id;
     const newTrip = await Trip.create(req.body);
     res.status(201).json(newTrip);
+
   } catch (error) {
     next(error);
   }

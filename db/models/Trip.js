@@ -15,10 +15,12 @@ Trip.init(
     },
     image: {
       type: DataTypes.STRING,
+
     },
   },
   {
     sequelize: db,
   }
 );
+
 module.exports = Trip;

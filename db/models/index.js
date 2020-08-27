@@ -1,5 +1,6 @@
 const User = require("./User");
 const Trip = require("./Trip");
+
 const Profile = require("./Profile");
 
 // User & Trips
