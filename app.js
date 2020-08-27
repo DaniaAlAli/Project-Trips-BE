@@ -9,6 +9,8 @@ const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 // Routes
 const userRoutes = require("./routes/users");
+const tripRoutes = require("./routes/trips");
+const profileRoutes = require("./routes/profile");
 
 const app = express();
 app.use(cors());
@@ -19,6 +21,9 @@ passport.use(jwtStrategy);
 
 // Routers
 app.use(userRoutes);
+app.use(profileRoutes);
+app.use("/trips", tripRoutes);
+
 
 //Not Found Paths
 app.use((req, res, next) => {
@@ -35,7 +40,7 @@ app.use((err, req, res, next) => {
 
 const run = async () => {
   try {
-    await db.sync();
+    await db.sync({ alter: true });
   } catch (error) {
     console.error("Error connecting to the database: ", error);
   }
