@@ -2,7 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 
-const { fetchProfile } = require("../controllers/profileController");
+const {
+  fetchProfile,
+  profileList,
+  profileCreate,
+} = require("../controllers/profileController");
+const passport = require("passport");
 
 router.param("profileId", async (req, res, next, profileId) => {
   const profile = await fetchProfile(profileId, next);
@@ -16,6 +21,17 @@ router.param("profileId", async (req, res, next, profileId) => {
   }
 });
 
-router.get("/My-profile");
+// router.post(
+//   "/",
+//   passport.authenticate("jwt", { session: false }),
+
+//   profileCreate
+// );
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+
+  profileList
+);
 
 module.exports = router;

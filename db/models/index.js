@@ -4,11 +4,17 @@ const Trip = require("./Trip");
 const Profile = require("./Profile");
 
 // User & Trips
-User.hasMany(Trip, { as: "trips", foreignKey: "userId" });
+User.hasMany(Trip, {
+  as: "trips",
+  foreignKey: "userId",
+});
 Trip.belongsTo(User, { as: "user" });
 
 // User & profile
-User.hasOne(Profile, { as: "profile", foreignKey: "userId" });
+User.hasOne(Profile, {
+  as: "profile",
+  foreignKey: "userId",
+});
 Profile.belongsTo(User, { as: "user" });
 
 module.exports = {

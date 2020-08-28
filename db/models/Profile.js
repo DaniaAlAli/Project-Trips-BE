@@ -11,6 +11,7 @@ Profile.init(
     },
     bio: {
       type: DataTypes.STRING,
+      defaultValue: "helooo",
     },
   },
   {
