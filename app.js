@@ -9,6 +9,8 @@ const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 // Routes
 const userRoutes = require("./routes/users");
+const tripRoutes = require("./routes/trips");
+const profileRoutes = require("./routes/profile");
 
 const app = express();
 app.use(cors());
@@ -16,6 +18,11 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
+
+// Routers
+app.use(userRoutes);
+app.use(profileRoutes);
+app.use("/trips", tripRoutes);
 
 //Not Found Paths
 app.use((req, res, next) => {
@@ -30,12 +37,9 @@ app.use((err, req, res, next) => {
   res.json(err.message || "Internal Server Error");
 });
 
-// Routers
-app.use(userRoutes);
-
 const run = async () => {
   try {
-    await db.sync();
+    await db.sync({ alter: true });
   } catch (error) {
     console.error("Error connecting to the database: ", error);
   }

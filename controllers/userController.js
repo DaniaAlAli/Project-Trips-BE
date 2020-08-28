@@ -1,4 +1,4 @@
-const { User } = require("../db/models");
+const { User, Trip } = require("../db/models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET, JWT_EXPIRATION_MS } = require("../config/keys");
@@ -8,7 +8,7 @@ exports.signup = async (req, res, next) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
     req.body.password = hashedPassword;
-    await User.create(req.body);
+    const newUser = await User.create(req.body);
 
     // Sign in after sign up
     const payload = {
@@ -21,7 +21,6 @@ exports.signup = async (req, res, next) => {
     };
     const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
     res.status(201).json({ token });
-    res.status(201).json(newUser);
   } catch (error) {
     next(error);
   }
