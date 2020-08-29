@@ -1,7 +1,8 @@
-const { User } = require("../db/models");
+const { User, Profile } = require("../db/models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET, JWT_EXPIRATION_MS } = require("../config/keys");
+const { use } = require("passport");
 
 exports.signup = async (req, res, next) => {
   const saltRounds = 10;
@@ -9,6 +10,7 @@ exports.signup = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
     req.body.password = hashedPassword;
     const newUser = await User.create(req.body);
+    const newProfile = await Profile.create({ userId: newUser.id });
 
     // Sign in after sign up
     const payload = {
@@ -17,6 +19,7 @@ exports.signup = async (req, res, next) => {
       email: newUser.email,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
+      profile: newProfile,
       exp: Date.now() + JWT_EXPIRATION_MS,
     };
     const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
@@ -29,12 +32,14 @@ exports.signup = async (req, res, next) => {
 exports.signin = async (req, res, next) => {
   try {
     const { user } = req;
+    const profile = await Profile.findOne({ where: { userId: user.id } });
     const payload = {
       id: user.id,
       username: user.username,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      profile: profile,
       exp: Date.now() + JWT_EXPIRATION_MS,
     };
     const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
