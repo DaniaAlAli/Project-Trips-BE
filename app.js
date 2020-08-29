@@ -21,9 +21,8 @@ passport.use(jwtStrategy);
 
 // Routers
 app.use(userRoutes);
-app.use(profileRoutes);
+app.use("/myprofile", profileRoutes);
 app.use("/trips", tripRoutes);
-
 
 //Not Found Paths
 app.use((req, res, next) => {
@@ -40,7 +39,7 @@ app.use((err, req, res, next) => {
 
 const run = async () => {
   try {
-    await db.sync({ alter: true });
+    await db.sync();
   } catch (error) {
     console.error("Error connecting to the database: ", error);
   }

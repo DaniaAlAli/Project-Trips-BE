@@ -1,4 +1,4 @@
-const { User, Trip } = require("../db/models");
+const { User } = require("../db/models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET, JWT_EXPIRATION_MS } = require("../config/keys");
