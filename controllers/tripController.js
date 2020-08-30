@@ -1,5 +1,14 @@
 const { Trip } = require("../db/models");
 
+exports.fetchTrip = async (tripId, next) => {
+  try {
+    const trip = await Trip.findByPk(tripId);
+    return trip;
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.updateTrip = async (req, res, next) => {
   try {
     if (req.user.id === req.trip.userId) {
@@ -15,15 +24,6 @@ exports.updateTrip = async (req, res, next) => {
       err.status = 401;
       next(err);
     }
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.fetchTrip = async (tripId, next) => {
-  try {
-    const trip = await Trip.findByPk(tripId);
-    return trip;
   } catch (error) {
     next(error);
   }

@@ -1,9 +1,13 @@
-// const express = require("express");
+const express = require("express");
 
-// const router = express.Router();
+const router = express.Router();
 
-// const { fetchProfile } = require("../controllers/profileController");
-// const passport = require("passport");
+const passport = require("passport");
+
+const {
+  fetchProfile,
+  updateProfile,
+} = require("../controllers/profileController");
 
 // router.param("profileId", async (req, res, next, profileId) => {
 //   const profile = await fetchProfile(profileId, next);
@@ -17,4 +21,12 @@
 //   }
 // });
 
-// module.exports = router;
+router.get("/", passport.authenticate("jwt", { session: false }), fetchProfile);
+
+router.put(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  updateProfile
+);
+
+module.exports = router;

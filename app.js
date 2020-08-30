@@ -10,7 +10,7 @@ const { localStrategy, jwtStrategy } = require("./middleware/passport");
 // Routes
 const userRoutes = require("./routes/users");
 const tripRoutes = require("./routes/trips");
-// const profileRoutes = require("./routes/profile");
+const profileRoutes = require("./routes/profile");
 
 const app = express();
 app.use(cors());
@@ -21,7 +21,7 @@ passport.use(jwtStrategy);
 
 // Routers
 app.use(userRoutes);
-// app.use("/myprofile", profileRoutes);
+app.use("/profile", profileRoutes);
 app.use("/trips", tripRoutes);
 
 //Not Found Paths
