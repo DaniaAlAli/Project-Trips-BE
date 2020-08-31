@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
+const upload = require("../middleware/multer");
 
 const {
   tripList,
@@ -25,14 +26,19 @@ router.param("tripId", async (req, res, next, tripId) => {
 router.get("/", tripList);
 
 // Create new trip
-router.post("/", passport.authenticate("jwt", { session: false }), createTrip);
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"),
+  createTrip
+);
 
 // updateTrip
 
 router.put(
   "/:tripId",
   passport.authenticate("jwt", { session: false }),
-  // upload.single("image"), // UPDATE THE IMAGE
+  upload.single("image"),
   updateTrip
 );
 
