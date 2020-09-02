@@ -3,6 +3,7 @@ const router = express.Router();
 const { signup, signin, userList } = require("../controllers/userController");
 const passport = require("passport");
 
+// this isn't being used, remove it
 router.param("userId", async (req, res, next, userId) => {
   const user = await fetchUser(userId, next);
   if (user) {
@@ -15,6 +16,7 @@ router.param("userId", async (req, res, next, userId) => {
   }
 });
 
+// change to /users instead
 router.get("/profiles", userList);
 
 // Sign up
