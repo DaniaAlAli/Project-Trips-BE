@@ -57,9 +57,9 @@ exports.tripList = async (req, res, next) => {
 
 exports.createTrip = async (req, res, next) => {
   console.log("req.body", req.body);
-  console.log("exports.createTrip -> req.user", req.user);
   try {
     req.body.userId = req.user.id;
+
     const newTrip = await Trip.create(req.body);
     res.status(201).json(newTrip);
   } catch (error) {

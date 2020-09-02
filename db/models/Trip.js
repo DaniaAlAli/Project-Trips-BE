@@ -24,6 +24,7 @@ Trip.init(
       type: DataTypes.STRING,
     },
   },
+
   {
     sequelize: db,
   }
