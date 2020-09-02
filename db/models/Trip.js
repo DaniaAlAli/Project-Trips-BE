@@ -23,6 +23,7 @@ Trip.init(
     date: {
       type: DataTypes.STRING,
     },
+    profileName: { type: DataTypes.STRING },
   },
 
   {
