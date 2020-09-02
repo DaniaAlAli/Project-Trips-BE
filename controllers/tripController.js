@@ -36,7 +36,7 @@ exports.deleteTrip = async (req, res, next) => {
       res.status(204).end();
     } else {
       const err = new Error("Unauthorized");
-      err.status = 404;
+      err.status = 404; // should be 401
       next(err);
     }
   } catch (error) {
@@ -56,6 +56,7 @@ exports.tripList = async (req, res, next) => {
 };
 
 exports.createTrip = async (req, res, next) => {
+  // remove console logs before pushing
   console.log("req.body", req.body);
   try {
     req.body.userId = req.user.id;
