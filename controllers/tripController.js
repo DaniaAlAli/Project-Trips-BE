@@ -59,6 +59,7 @@ exports.createTrip = async (req, res, next) => {
   console.log("req.body", req.body);
   try {
     req.body.userId = req.user.id;
+    req.body.profileName = req.user.username;
 
     const newTrip = await Trip.create(req.body);
     res.status(201).json(newTrip);
