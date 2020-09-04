@@ -23,7 +23,14 @@ Trip.init(
     date: {
       type: DataTypes.STRING,
     },
-    profileName: { type: DataTypes.STRING },
+    profileName: {
+      type: DataTypes.STRING,
+    },
+
+    favorite: {
+      type: DataTypes.STRING,
+      defaultValue: false,
+    },
   },
 
   {

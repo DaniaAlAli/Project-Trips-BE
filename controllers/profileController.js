@@ -5,9 +5,8 @@ exports.updateProfile = async (req, res, next) => {
     const foundProfile = await Profile.findOne({
       where: { userId: req.user.id },
     });
-    req.profile = foundProfile;
     if (req.user.id === foundProfile.userId) {
-      await req.profile.update(req.body);
+      await foundProfile.update(req.body);
       res.status(204).end();
     } else {
       const err = new Error("Unauthorized");
