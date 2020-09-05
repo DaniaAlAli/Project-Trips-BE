@@ -24,6 +24,15 @@ Trip.init(
       type: DataTypes.STRING,
     },
     profileName: { type: DataTypes.STRING },
+    destinationInput: {
+      type: DataTypes.STRING,
+    },
+    latitude: {
+      type: DataTypes.STRING,
+    },
+    longitude: {
+      type: DataTypes.STRING,
+    },
   },
 
   {
