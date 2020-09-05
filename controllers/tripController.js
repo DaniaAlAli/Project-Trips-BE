@@ -29,21 +29,21 @@ exports.updateTrip = async (req, res, next) => {
   }
 };
 
-exports.updateFavtrip = async (req, res, next) => {
-  try {
-    if (req.user.id === req.trip.userId) {
-      req.trip.favorite = !req.trip.favorite;
-      await req.trip.update(req.trip);
-      res.status(204).end();
-    } else {
-      const err = new Error("Unauthorized");
-      err.status = 401;
-      next(err);
-    }
-  } catch (error) {
-    next(error);
-  }
-};
+// exports.updateFavtrip = async (req, res, next) => {
+//   try {
+//     if (req.user.id === req.trip.userId) {
+//       req.trip.favorite = !req.trip.favorite;
+//       await req.trip.update(req.body);
+//       res.status(204).end();
+//     } else {
+//       const err = new Error("Unauthorized");
+//       err.status = 401;
+//       next(err);
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 exports.deleteTrip = async (req, res, next) => {
   try {
@@ -72,7 +72,6 @@ exports.tripList = async (req, res, next) => {
 };
 
 exports.createTrip = async (req, res, next) => {
-  console.log("req.body", req.body);
   try {
     req.body.userId = req.user.id;
     req.body.profileName = req.user.username;

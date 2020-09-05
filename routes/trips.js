@@ -42,13 +42,13 @@ router.put(
   upload.single("image"),
   updateTrip
 );
-// update Favorite Trip
+// // update Favorite Trip
 
-router.put(
-  "/:tripId/favorite",
-  passport.authenticate("jwt", { session: false }),
-  updateFavtrip
-);
+// router.put(
+//   "/:tripId/favorite",
+//   passport.authenticate("jwt", { session: false }),
+//   updateFavtrip
+// );
 
 // deleteTrip
 

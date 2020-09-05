@@ -27,8 +27,8 @@ Trip.init(
       type: DataTypes.STRING,
     },
 
-    favorite: {
-      type: DataTypes.STRING,
+    favorited: {
+      type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
   },
