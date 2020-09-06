@@ -36,7 +36,7 @@ exports.deleteTrip = async (req, res, next) => {
       res.status(204).end();
     } else {
       const err = new Error("Unauthorized");
-      err.status = 404;
+      err.status = 401;
       next(err);
     }
   } catch (error) {
@@ -59,7 +59,6 @@ exports.createTrip = async (req, res, next) => {
   try {
     req.body.userId = req.user.id;
     req.body.profileName = req.user.username;
-
     const newTrip = await Trip.create(req.body);
     res.status(201).json(newTrip);
   } catch (error) {

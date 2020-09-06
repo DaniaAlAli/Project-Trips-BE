@@ -23,13 +23,20 @@ Trip.init(
     date: {
       type: DataTypes.STRING,
     },
-    profileName: {
-      type: DataTypes.STRING,
-    },
 
     favorited: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+    },
+    profileName: { type: DataTypes.STRING },
+    destinationInput: {
+      type: DataTypes.STRING,
+    },
+    latitude: {
+      type: DataTypes.STRING,
+    },
+    longitude: {
+      type: DataTypes.STRING,
     },
   },
 
