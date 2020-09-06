@@ -9,7 +9,6 @@ const {
   createTrip,
   updateTrip,
   deleteTrip,
-  updateFavtrip,
 } = require("../controllers/tripController");
 
 router.param("tripId", async (req, res, next, tripId) => {
@@ -35,23 +34,14 @@ router.post(
 );
 
 // updateTrip
-
 router.put(
   "/:tripId",
   passport.authenticate("jwt", { session: false }),
   upload.single("image"),
   updateTrip
 );
-// // update Favorite Trip
-
-// router.put(
-//   "/:tripId/favorite",
-//   passport.authenticate("jwt", { session: false }),
-//   updateFavtrip
-// );
 
 // deleteTrip
-
 router.delete(
   "/:tripId",
   passport.authenticate("jwt", { session: false }),

@@ -8,11 +8,11 @@ Trip.init(
   {
     country: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     destination: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     details: {
       type: DataTypes.STRING,
