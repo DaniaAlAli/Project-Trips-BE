@@ -34,7 +34,6 @@ router.post(
 );
 
 // updateTrip
-
 router.put(
   "/:tripId",
   passport.authenticate("jwt", { session: false }),
@@ -43,7 +42,6 @@ router.put(
 );
 
 // deleteTrip
-
 router.delete(
   "/:tripId",
   passport.authenticate("jwt", { session: false }),

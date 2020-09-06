@@ -8,11 +8,11 @@ Trip.init(
   {
     country: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     destination: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     details: {
       type: DataTypes.STRING,
@@ -22,6 +22,11 @@ Trip.init(
     },
     date: {
       type: DataTypes.STRING,
+    },
+
+    favorited: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
     profileName: { type: DataTypes.STRING },
     destinationInput: {

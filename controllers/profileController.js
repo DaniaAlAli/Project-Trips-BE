@@ -5,7 +5,6 @@ exports.updateProfile = async (req, res, next) => {
     const foundProfile = await Profile.findOne({
       where: { userId: req.user.id },
     });
-    req.profile = foundProfile;
     if (req.user.id === foundProfile.userId) {
       await foundProfile.update(req.body);
       res.status(204).end();
