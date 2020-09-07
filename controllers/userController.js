@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET, JWT_EXPIRATION_MS } = require("../config/keys");
 
+// REVIEW: Delete commented out code
+
 // exports.fetchUser = async (userId, next) => {
 //   try {
 //     const user = await User.findByPk(userId);

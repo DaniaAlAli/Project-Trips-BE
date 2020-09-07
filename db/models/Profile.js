@@ -12,6 +12,7 @@ Profile.init(
     bio: {
       type: DataTypes.STRING,
     },
+    // REVIEW: Why do you have a username here? It's already in the User model
     username: {
       type: DataTypes.STRING,
     },
