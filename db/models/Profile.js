@@ -12,9 +12,6 @@ Profile.init(
     bio: {
       type: DataTypes.STRING,
     },
-    username: {
-      type: DataTypes.STRING,
-    },
   },
   {
     sequelize: db,
