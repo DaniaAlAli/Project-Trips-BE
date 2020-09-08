@@ -6,6 +6,11 @@ exports.updateProfile = async (req, res, next) => {
       where: { userId: req.user.id },
     });
     if (req.user.id === foundProfile.userId) {
+      if (req.file) {
+        req.body.image = `${req.protocol}://${req.get("host")}/media/${
+          req.file.filename
+        }`;
+      }
       await foundProfile.update(req.body);
       res.status(204).end();
     } else {
